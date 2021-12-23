@@ -11,8 +11,7 @@ class Sort{
             }
         }
     }
-}    
-    
+}     
 class Mains{
     public static void main(String args[]){
         int array[] = {5 , 3 ,4 ,2 , 1};
