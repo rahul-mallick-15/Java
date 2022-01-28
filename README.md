@@ -1,3 +1,4 @@
 # Java
 Java Repo
-1.Bubble Sort
+1.Sorting (BubbleSort)
+2.LinkedList (ReverseList,ReverseKGroup)
