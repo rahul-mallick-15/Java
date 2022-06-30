@@ -20,7 +20,7 @@ class Sort{
         }
     }
 
-    /*/ QuickSort
+    /*/ Quick Sort
     /// T(n) = T(k) + T(n - k - 1) + O(n)
     /// WORST Case  : O(n * n)     when array is increasing or decreasing and 
     ///               partition always selects smallest or greatest element.
@@ -52,6 +52,48 @@ class Sort{
         return i ; 
     }
 
+    /*/Merge Sort
+    ///T(n) = 2T(n / 2) + ⊖(n)
+    ///WORST CASE : O(n * logn)
+    ///BEST  CASE : O(n * logn)
+    ///Stable Sorting
+    /*/
+    public static void mergeSort(int array[] , int low , int high){
+        if(low < high){
+            int mid = low + (high - low) / 2 ;
+            mergeSort(array , low     , mid );
+            mergeSort(array , mid + 1 , high);
+            merge(array , low , mid  ,  high);
+        }
+    }
+    private static void merge(int array[] , int low , int mid , int high){
+        int leftLen = mid - low + 1 ;
+        int rightLen= high- mid     ;
+        int left [] = new int[leftLen]  ;
+        int right[] = new int[rightLen] ;
+        for(int i = 0 ; i < leftLen ; ++i){
+            left[i] = array[low + i];
+        }
+        for(int i = 0 ; i < rightLen ; ++i){
+            right[i]= array[(mid + 1) + i];
+        }
+        int ptrL = 0 , ptrR = 0 ;
+        while(ptrL < leftLen && ptrR < rightLen ){
+            if(left[ptrL] <= right[ptrR]){
+                array[low++] = left[ptrL++];
+            }
+            else{
+                array[low++] = right[ptrR++];
+            }
+        }
+        while(ptrL < leftLen){
+            array[low++] = left[ptrL++];
+        }
+        while(ptrR < rightLen){
+            array[low++] = right[ptrR++];
+        }
+    }
+
 }
 class Display{
     public static void printArray(int array[]){
@@ -63,9 +105,9 @@ class Display{
 }     
 class Mains{
     public static void main(String args[]){
-        int array[] = {5 , 3 ,4 ,2 , 1};
+        int array[] = {5 , 3 , 2 , 1 , 4};
         Display.printArray(array);
-        Sort.quickSort(array , 0 , 4 );
+        Sort.mergeSort(array , 0 , 4 );
         Display.printArray(array);
     }
 } 
